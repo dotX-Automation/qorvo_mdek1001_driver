@@ -26,6 +26,20 @@ ARG USER_UID=1000
 ENV DEBIAN_FRONTEND=noninteractive
 
 # IMAGE SETUP START #
+# qorvo_mdek1001_driver START #
+# Install serial library
+WORKDIR /opt
+RUN git clone --single-branch --branch 'main' --depth 1 https://github.com/dotX-Automation/serial.git && \
+  cd serial && \
+  make && \
+  make install && \
+  ldconfig && \
+  rm -rf build && \
+  cd .. && \
+  chgrp -R internal /opt/serial && \
+  chmod -R g+rw /opt/serial
+WORKDIR /root
+# qorvo_mdek1001_driver END #
 # IMAGE SETUP END #
 
 # Create a user with Zsh as shell, hashed password, and add it to the sudoers
