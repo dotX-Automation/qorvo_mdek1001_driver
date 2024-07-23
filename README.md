@@ -1,6 +1,12 @@
-# dua-template
+# qorvo_mdek1001_driver
 
-GitHub template repositories for projects based on the Distributed Unified Architecture.
+ROS 2 driver for the Qorvo MDEK1001 Ultra-WideBand development kit.
+
+## Usage
+
+See the individual package READMEs for specific usage instructions.
+
+### DUA integration
 
 See [`dua-template.md`](dua-template.md) for more information.
 

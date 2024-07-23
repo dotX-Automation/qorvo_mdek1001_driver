@@ -1,0 +1,13 @@
+/qorvo_mdek1001_driver:
+  ros__parameters:
+    autostart: true
+    frame_prefix: ''
+    global_frame: world
+    position_variance:
+    - 0.0
+    - 0.0
+    - 0.0
+    serial_port: /dev/ttyACM0
+    tag_id: 1
+    timeout: 200
+    use_sim_time: false
