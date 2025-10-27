@@ -2,11 +2,11 @@
   ros__parameters:
     autostart: true
     frame_prefix: ''
-    global_frame: world
+    global_frame: map
     position_variance:
-    - 0.0
-    - 0.0
-    - 0.0
+    - 0.1
+    - 0.1
+    - 0.1
     serial_port: /dev/ttyACM0
     tag_id: 1
     timeout: 200

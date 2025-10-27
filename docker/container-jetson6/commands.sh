@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Custom aliases for container internal shell.
+# Project-specific shell functions and commands.
 #
 # Roberto Masocco <r.masocco@dotxautomation.com>
 #
@@ -20,9 +20,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Add custom, general-purpose aliases here.
+# Add yours, some convenient ones are provided below.
 # You can also source other files from sub-units included by this project.
 
-alias ls='ls --color=auto'
-alias ll='ls -la'
-alias valgrind-check='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind.out'
+# shellcheck disable=SC1090

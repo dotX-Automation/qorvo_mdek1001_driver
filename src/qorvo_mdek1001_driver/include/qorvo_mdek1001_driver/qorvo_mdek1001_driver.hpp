@@ -38,18 +38,18 @@
 
 #include <rclcpp/rclcpp.hpp>
 
-#include <dua_node/dua_node.hpp>
+#include <dua_node_cpp/dua_node.hpp>
 #include <dua_qos_cpp/dua_qos.hpp>
 
-#include <dua_interfaces/msg/uwb_anchor.hpp>
-#include <dua_interfaces/msg/uwb_tag.hpp>
+#include <dua_hardware_interfaces/msg/uwb_anchor.hpp>
+#include <dua_hardware_interfaces/msg/uwb_tag.hpp>
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <std_msgs/msg/header.hpp>
 
 #include <std_srvs/srv/set_bool.hpp>
 
-using namespace dua_interfaces::msg;
+using namespace dua_hardware_interfaces::msg;
 using namespace geometry_msgs::msg;
 using namespace std_msgs::msg;
 

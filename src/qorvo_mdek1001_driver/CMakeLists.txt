@@ -20,16 +20,16 @@ endif()
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 # Find dependencies
-find_library(SERIAL_LIBRARY serial REQUIRED)
 find_package(ament_cmake REQUIRED)
-find_package(dua_interfaces REQUIRED)
 find_package(dua_app_management REQUIRED)
-find_package(dua_node REQUIRED)
+find_package(dua_hardware_interfaces REQUIRED)
+find_package(dua_node_cpp REQUIRED)
 find_package(dua_qos_cpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(params_manager REQUIRED)
+find_package(params_manager_cpp REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
+find_library(SERIAL_LIBRARY serial REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(Threads REQUIRED)
@@ -56,11 +56,12 @@ target_link_libraries(qorvo_mdek1001_driver
   serial
   Threads::Threads)
 ament_target_dependencies(qorvo_mdek1001_driver
-  dua_interfaces
-  dua_node
+  builtin_interfaces
+  dua_hardware_interfaces
+  dua_node_cpp
   dua_qos_cpp
   geometry_msgs
-  params_manager
+  params_manager_cpp
   rclcpp
   rclcpp_components
   std_msgs
