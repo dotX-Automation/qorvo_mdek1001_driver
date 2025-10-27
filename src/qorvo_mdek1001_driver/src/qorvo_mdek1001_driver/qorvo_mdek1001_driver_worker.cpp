@@ -107,7 +107,8 @@ void QorvoMDEK1001Driver::tag_routine()
 
       std::vector<std::string> anchor_splits(splits.begin() + i * 6, splits.begin() + (i + 1) * 6);
 
-      anchor_msg.set__id_str("anchor_" + anchor_splits[1]);
+      anchor_msg.set__id(std::stoi(anchor_splits[1], 0, 16));
+      anchor_msg.set__id_str(anchor_splits[1]);
       anchor_msg.set__distance(std::stod(anchor_splits[5]));
       anchor_msg.position.set__x(std::stod(anchor_splits[2]));
       anchor_msg.position.set__y(std::stod(anchor_splits[3]));
