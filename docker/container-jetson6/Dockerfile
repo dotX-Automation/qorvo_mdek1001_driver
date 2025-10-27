@@ -18,7 +18,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM dotxautomation/dua-foundation:x86-cudev-ai
+FROM dotxautomation/dua-foundation:jetson6
 
 # Change this if you encounter problems with the default user
 ARG USER_UID=1000
@@ -45,7 +45,8 @@ WORKDIR /root
 # Create a user with Zsh as shell, hashed password, and add it to the sudoers
 # To generate the hashed password, run:
 #   mkpasswd -m sha-512 PASSWORD duatemplate
-RUN useradd -r -m -s /usr/bin/zsh -u ${USER_UID} -G adm,dialout,internal,plugdev,sudo,tty,video -p '$6$duatemplate$m8vqVNxjdBVBlz5jyASxe9r5lhpZpIISGE//0BlgVIWnq9ng6x/8htscUBv7iokmTbdoqYJT7ILqRd6FyCkJA0' neo
+RUN (getent passwd ${USER_UID} || true) && userdel -r $(getent passwd ${USER_UID} | cut -d: -f1) 2>/dev/null || true; \
+  useradd -r -m -s /usr/bin/zsh -u ${USER_UID} -G adm,dialout,internal,plugdev,sudo,tty,video -p '$6$duatemplate$QJg/Q3OQx9gzBdEbVj1O626gbBTWTGhKf6/EWLyPOMQ/WNfrlKCWLk5a6QXk2ZeHbQiT5/wxDkxFKJPnNVQVx.' neo
 ENV HOME=/home/neo
 
 # Create workspace directory: host workspaces will be mounted here
@@ -58,6 +59,10 @@ RUN mkdir ${HOME}/zsh_history && \
 
 # Create SSH directory for user
 RUN mkdir ${HOME}/.ssh
+
+# Create mount point for remote filesystems
+RUN mkdir -p /mnt/remote && \
+  chown neo:neo /mnt/remote
 
 # Switch to internal user
 USER neo

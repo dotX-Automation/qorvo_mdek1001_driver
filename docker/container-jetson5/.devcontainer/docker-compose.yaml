@@ -33,9 +33,11 @@ services:
       SHELL: /usr/bin/zsh
     user: neo
     network_mode: "host"
+    restart: always
     privileged: true
     ipc: host
     runtime: nvidia
+    init: true
     stdin_open: false
     tty: true
     working_dir: /home/neo/workspace
@@ -62,6 +64,5 @@ services:
       - ~/.Xauthority:/home/neo/.Xauthority:rw
       - /dev:/dev
       - /sys:/sys
-      - /run/jtop.sock:/run/jtop.sock
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro

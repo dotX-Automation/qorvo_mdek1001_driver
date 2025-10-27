@@ -19,22 +19,35 @@
 # limitations under the License.
 
 services:
-  qorvo_mdek1001_driver-x86-cudev-ai:
+  qorvo_mdek1001_driver-jetson6:
     build:
       context: ../
       network: host
       dockerfile: Dockerfile
       args:
         - USER_UID=1000
-    image: qorvo_mdek1001_driver:x86-cudev-ai
+    image: qorvo_mdek1001_driver:jetson6
     environment:
       TERM: xterm-256color
       DISPLAY:
       SHELL: /usr/bin/zsh
     user: neo
+    group_add:
+      - 10
+      - 20
+      - 29
+      - 30
+      - 44
+      - 46
+      - 104
+      - 116
+      - 999
     network_mode: "host"
+    restart: always
     privileged: true
     ipc: host
+    runtime: nvidia
+    init: true
     stdin_open: false
     tty: true
     working_dir: /home/neo/workspace
@@ -63,10 +76,3 @@ services:
       - /sys:/sys
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [ gpu ]
