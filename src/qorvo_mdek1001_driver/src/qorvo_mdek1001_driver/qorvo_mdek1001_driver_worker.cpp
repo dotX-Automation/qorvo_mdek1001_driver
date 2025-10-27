@@ -77,7 +77,7 @@ void QorvoMDEK1001Driver::tag_routine()
         break;
       }
     }
-    RCLCPP_INFO(this->get_logger(), "Waiting for output to start...");
+    RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 1000, "Waiting for output to start...");
   }
 
   RCLCPP_WARN(this->get_logger(), "Tag sampling thread started");
@@ -118,16 +118,13 @@ void QorvoMDEK1001Driver::tag_routine()
     }
 
     // Parse tag data, if present
+    tag_msg.tag_position.header.set__stamp(stamp);
+    tag_msg.tag_position.header.set__frame_id(global_frame_);
     if (splits.size() > static_cast<size_t>(n_anchors * 6)) {
       int i = n_anchors * 6 + 1;
-
-      tag_msg.tag_position.header.set__stamp(stamp);
-      tag_msg.tag_position.header.set__frame_id(global_frame_);
-
       tag_msg.tag_position.point.set__x(std::stod(splits[i]));
       tag_msg.tag_position.point.set__y(std::stod(splits[i + 1]));
       tag_msg.tag_position.point.set__z(std::stod(splits[i + 2]));
-
       tag_msg.set__quality_factor(std::stoi(splits[i + 3]));
 
       // Publish tag pose
