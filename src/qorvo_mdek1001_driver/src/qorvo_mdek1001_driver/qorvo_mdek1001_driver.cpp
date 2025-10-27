@@ -76,12 +76,12 @@ void QorvoMDEK1001Driver::init_publishers()
 {
   // tag_data
   uwb_tag_pub_ = this->create_publisher<UWBTag>(
-    "~/tag_data",
+    "~/data",
     dua_qos::Reliable::get_datum_qos());
 
   // tag_pose
   pose_pub_ = this->create_publisher<PoseWithCovarianceStamped>(
-    "~/tag_pose",
+    "~/pose",
     dua_qos::Reliable::get_datum_qos());
 }
 
